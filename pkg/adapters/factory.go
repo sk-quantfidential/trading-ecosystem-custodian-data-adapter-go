@@ -3,6 +3,7 @@ package adapters
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/quantfidential/trading-ecosystem/custodian-data-adapter-go/internal/cache"
 	"github.com/quantfidential/trading-ecosystem/custodian-data-adapter-go/internal/config"
@@ -48,6 +49,23 @@ func NewCustodianDataAdapter(cfg *config.Config, logger *logrus.Logger) (DataAda
 	if logger == nil {
 		return nil, fmt.Errorf("logger is required")
 	}
+
+	// Apply derivation if schema name not explicitly provided
+	if cfg.SchemaName == "" {
+		cfg.SchemaName = deriveSchemaName(cfg.ServiceName, cfg.ServiceInstanceName)
+	}
+
+	// Apply derivation if Redis namespace not explicitly provided
+	if cfg.RedisNamespace == "" {
+		cfg.RedisNamespace = deriveRedisNamespace(cfg.ServiceName, cfg.ServiceInstanceName)
+	}
+
+	logger.WithFields(logrus.Fields{
+		"service_name":     cfg.ServiceName,
+		"instance_name":    cfg.ServiceInstanceName,
+		"schema_name":      cfg.SchemaName,
+		"redis_namespace":  cfg.RedisNamespace,
+	}).Info("DataAdapter configuration resolved")
 
 	adapter := &CustodianDataAdapter{
 		config: cfg,
@@ -178,4 +196,50 @@ func (a *CustodianDataAdapter) ServiceDiscoveryRepository() interfaces.ServiceDi
 
 func (a *CustodianDataAdapter) CacheRepository() interfaces.CacheRepository {
 	return a.cacheRepo
+}
+
+// deriveSchemaName determines PostgreSQL schema based on service instance pattern
+// Singleton: custodian-simulator == custodian-simulator → "custodian"
+// Multi-instance: custodian-Komainu → "custodian_komainu"
+func deriveSchemaName(serviceName, instanceName string) string {
+	if serviceName == instanceName {
+		// Singleton service pattern
+		// Example: "custodian-simulator" -> "custodian"
+		parts := strings.Split(serviceName, "-")
+		if len(parts) > 0 {
+			return parts[0]
+		}
+		return serviceName
+	}
+
+	// Multi-instance service pattern
+	// Example: "custodian-Komainu" -> "custodian_komainu"
+	parts := strings.Split(instanceName, "-")
+	if len(parts) >= 2 {
+		return strings.ToLower(parts[0] + "_" + parts[1])
+	}
+	return strings.ToLower(instanceName)
+}
+
+// deriveRedisNamespace determines Redis key prefix based on service instance pattern
+// Singleton: custodian-simulator == custodian-simulator → "custodian"
+// Multi-instance: custodian-Komainu → "custodian:Komainu"
+func deriveRedisNamespace(serviceName, instanceName string) string {
+	if serviceName == instanceName {
+		// Singleton service pattern
+		// Example: "custodian-simulator" -> "custodian"
+		parts := strings.Split(serviceName, "-")
+		if len(parts) > 0 {
+			return parts[0]
+		}
+		return serviceName
+	}
+
+	// Multi-instance service pattern
+	// Example: "custodian-Komainu" -> "custodian:Komainu"
+	parts := strings.Split(instanceName, "-")
+	if len(parts) >= 2 {
+		return parts[0] + ":" + parts[1]
+	}
+	return instanceName
 }
