@@ -72,30 +72,30 @@ custodian-data-adapter-go/
 #### Position Model (position.go)
 ```go
 type Position struct {
-	PositionID        string          `json:"position_id" db:"position_id"`
-	AccountID         string          `json:"account_id" db:"account_id"`
-	Symbol            string          `json:"symbol" db:"symbol"`
-	Quantity          float64         `json:"quantity" db:"quantity"`
-	AvailableQuantity float64         `json:"available_quantity" db:"available_quantity"`
-	LockedQuantity    float64         `json:"locked_quantity" db:"locked_quantity"`
-	AverageCost       *float64        `json:"average_cost,omitempty" db:"average_cost"`
-	MarketValue       *float64        `json:"market_value,omitempty" db:"market_value"`
-	Currency          string          `json:"currency" db:"currency"`
-	LastUpdated       time.Time       `json:"last_updated" db:"last_updated"`
-	CreatedAt         time.Time       `json:"created_at" db:"created_at"`
-	Metadata          json.RawMessage `json:"metadata,omitempty" db:"metadata"`
+ PositionID        string          `json:"position_id" db:"position_id"`
+ AccountID         string          `json:"account_id" db:"account_id"`
+ Symbol            string          `json:"symbol" db:"symbol"`
+ Quantity          float64         `json:"quantity" db:"quantity"`
+ AvailableQuantity float64         `json:"available_quantity" db:"available_quantity"`
+ LockedQuantity    float64         `json:"locked_quantity" db:"locked_quantity"`
+ AverageCost       *float64        `json:"average_cost,omitempty" db:"average_cost"`
+ MarketValue       *float64        `json:"market_value,omitempty" db:"market_value"`
+ Currency          string          `json:"currency" db:"currency"`
+ LastUpdated       time.Time       `json:"last_updated" db:"last_updated"`
+ CreatedAt         time.Time       `json:"created_at" db:"created_at"`
+ Metadata          json.RawMessage `json:"metadata,omitempty" db:"metadata"`
 }
 
 type PositionQuery struct {
-	AccountID    *string
-	Symbol       *string
-	MinQuantity  *float64
-	MaxQuantity  *float64
-	Currency     *string
-	SortBy       string  // "quantity", "market_value", "last_updated"
-	SortOrder    string  // "ASC", "DESC"
-	Limit        int
-	Offset       int
+ AccountID    *string
+ Symbol       *string
+ MinQuantity  *float64
+ MaxQuantity  *float64
+ Currency     *string
+ SortBy       string  // "quantity", "market_value", "last_updated"
+ SortOrder    string  // "ASC", "DESC"
+ Limit        int
+ Offset       int
 }
 ```
 
@@ -108,33 +108,33 @@ type PositionQuery struct {
 #### Settlement Model (settlement.go)
 ```go
 type Settlement struct {
-	SettlementID   string          `json:"settlement_id" db:"settlement_id"`
-	AccountID      string          `json:"account_id" db:"account_id"`
-	SettlementType SettlementType  `json:"settlement_type" db:"settlement_type"`
-	Symbol         string          `json:"symbol" db:"symbol"`
-	Quantity       float64         `json:"quantity" db:"quantity"`
-	Currency       string          `json:"currency" db:"currency"`
-	Status         SettlementStatus `json:"status" db:"status"`
-	InitiatedAt    time.Time       `json:"initiated_at" db:"initiated_at"`
-	CompletedAt    *time.Time      `json:"completed_at,omitempty" db:"completed_at"`
-	CancelledAt    *time.Time      `json:"cancelled_at,omitempty" db:"cancelled_at"`
-	Metadata       json.RawMessage `json:"metadata,omitempty" db:"metadata"`
+ SettlementID   string          `json:"settlement_id" db:"settlement_id"`
+ AccountID      string          `json:"account_id" db:"account_id"`
+ SettlementType SettlementType  `json:"settlement_type" db:"settlement_type"`
+ Symbol         string          `json:"symbol" db:"symbol"`
+ Quantity       float64         `json:"quantity" db:"quantity"`
+ Currency       string          `json:"currency" db:"currency"`
+ Status         SettlementStatus `json:"status" db:"status"`
+ InitiatedAt    time.Time       `json:"initiated_at" db:"initiated_at"`
+ CompletedAt    *time.Time      `json:"completed_at,omitempty" db:"completed_at"`
+ CancelledAt    *time.Time      `json:"cancelled_at,omitempty" db:"cancelled_at"`
+ Metadata       json.RawMessage `json:"metadata,omitempty" db:"metadata"`
 }
 
 type SettlementType string
 const (
-	SettlementTypeDeposit   SettlementType = "DEPOSIT"
-	SettlementTypeWithdrawal SettlementType = "WITHDRAWAL"
-	SettlementTypeTransfer  SettlementType = "TRANSFER"
+ SettlementTypeDeposit   SettlementType = "DEPOSIT"
+ SettlementTypeWithdrawal SettlementType = "WITHDRAWAL"
+ SettlementTypeTransfer  SettlementType = "TRANSFER"
 )
 
 type SettlementStatus string
 const (
-	SettlementStatusPending     SettlementStatus = "PENDING"
-	SettlementStatusInProgress  SettlementStatus = "IN_PROGRESS"
-	SettlementStatusCompleted   SettlementStatus = "COMPLETED"
-	SettlementStatusFailed      SettlementStatus = "FAILED"
-	SettlementStatusCancelled   SettlementStatus = "CANCELLED"
+ SettlementStatusPending     SettlementStatus = "PENDING"
+ SettlementStatusInProgress  SettlementStatus = "IN_PROGRESS"
+ SettlementStatusCompleted   SettlementStatus = "COMPLETED"
+ SettlementStatusFailed      SettlementStatus = "FAILED"
+ SettlementStatusCancelled   SettlementStatus = "CANCELLED"
 )
 ```
 
@@ -147,14 +147,14 @@ const (
 #### Balance Model (balance.go)
 ```go
 type Balance struct {
-	BalanceID        string    `json:"balance_id" db:"balance_id"`
-	AccountID        string    `json:"account_id" db:"account_id"`
-	Currency         string    `json:"currency" db:"currency"`
-	AvailableBalance float64   `json:"available_balance" db:"available_balance"`
-	LockedBalance    float64   `json:"locked_balance" db:"locked_balance"`
-	TotalBalance     float64   `json:"total_balance" db:"total_balance"`
-	LastUpdated      time.Time `json:"last_updated" db:"last_updated"`
-	CreatedAt        time.Time `json:"created_at" db:"created_at"`
+ BalanceID        string    `json:"balance_id" db:"balance_id"`
+ AccountID        string    `json:"account_id" db:"account_id"`
+ Currency         string    `json:"currency" db:"currency"`
+ AvailableBalance float64   `json:"available_balance" db:"available_balance"`
+ LockedBalance    float64   `json:"locked_balance" db:"locked_balance"`
+ TotalBalance     float64   `json:"total_balance" db:"total_balance"`
+ LastUpdated      time.Time `json:"last_updated" db:"last_updated"`
+ CreatedAt        time.Time `json:"created_at" db:"created_at"`
 }
 ```
 
@@ -171,64 +171,64 @@ type Balance struct {
 #### Position Repository (position_repository.go)
 ```go
 type PositionRepository interface {
-	Create(ctx context.Context, position *models.Position) error
-	GetByID(ctx context.Context, positionID string) (*models.Position, error)
-	GetByAccountAndSymbol(ctx context.Context, accountID, symbol string) (*models.Position, error)
-	Query(ctx context.Context, query *models.PositionQuery) ([]*models.Position, error)
-	Update(ctx context.Context, position *models.Position) error
-	UpdateAvailableQuantity(ctx context.Context, positionID string, availableQty, lockedQty float64) error
-	Delete(ctx context.Context, positionID string) error
-	GetByAccount(ctx context.Context, accountID string) ([]*models.Position, error)
+ Create(ctx context.Context, position *models.Position) error
+ GetByID(ctx context.Context, positionID string) (*models.Position, error)
+ GetByAccountAndSymbol(ctx context.Context, accountID, symbol string) (*models.Position, error)
+ Query(ctx context.Context, query *models.PositionQuery) ([]*models.Position, error)
+ Update(ctx context.Context, position *models.Position) error
+ UpdateAvailableQuantity(ctx context.Context, positionID string, availableQty, lockedQty float64) error
+ Delete(ctx context.Context, positionID string) error
+ GetByAccount(ctx context.Context, accountID string) ([]*models.Position, error)
 }
 ```
 
 #### Settlement Repository (settlement_repository.go)
 ```go
 type SettlementRepository interface {
-	Create(ctx context.Context, settlement *models.Settlement) error
-	GetByID(ctx context.Context, settlementID string) (*models.Settlement, error)
-	GetByAccount(ctx context.Context, accountID string) ([]*models.Settlement, error)
-	Update(ctx context.Context, settlement *models.Settlement) error
-	UpdateStatus(ctx context.Context, settlementID string, status models.SettlementStatus) error
-	MarkCompleted(ctx context.Context, settlementID string) error
-	MarkCancelled(ctx context.Context, settlementID string) error
-	GetPendingSettlements(ctx context.Context) ([]*models.Settlement, error)
+ Create(ctx context.Context, settlement *models.Settlement) error
+ GetByID(ctx context.Context, settlementID string) (*models.Settlement, error)
+ GetByAccount(ctx context.Context, accountID string) ([]*models.Settlement, error)
+ Update(ctx context.Context, settlement *models.Settlement) error
+ UpdateStatus(ctx context.Context, settlementID string, status models.SettlementStatus) error
+ MarkCompleted(ctx context.Context, settlementID string) error
+ MarkCancelled(ctx context.Context, settlementID string) error
+ GetPendingSettlements(ctx context.Context) ([]*models.Settlement, error)
 }
 ```
 
 #### Balance Repository (balance_repository.go)
 ```go
 type BalanceRepository interface {
-	Create(ctx context.Context, balance *models.Balance) error
-	GetByID(ctx context.Context, balanceID string) (*models.Balance, error)
-	GetByAccountAndCurrency(ctx context.Context, accountID, currency string) (*models.Balance, error)
-	Update(ctx context.Context, balance *models.Balance) error
-	Upsert(ctx context.Context, balance *models.Balance) error
-	AtomicUpdate(ctx context.Context, accountID, currency string, availableDelta, lockedDelta float64) error
-	GetByAccount(ctx context.Context, accountID string) ([]*models.Balance, error)
+ Create(ctx context.Context, balance *models.Balance) error
+ GetByID(ctx context.Context, balanceID string) (*models.Balance, error)
+ GetByAccountAndCurrency(ctx context.Context, accountID, currency string) (*models.Balance, error)
+ Update(ctx context.Context, balance *models.Balance) error
+ Upsert(ctx context.Context, balance *models.Balance) error
+ AtomicUpdate(ctx context.Context, accountID, currency string, availableDelta, lockedDelta float64) error
+ GetByAccount(ctx context.Context, accountID string) ([]*models.Balance, error)
 }
 ```
 
 #### Cache Repository (cache.go)
 ```go
 type CacheRepository interface {
-	Set(ctx context.Context, key string, value interface{}, ttl time.Duration) error
-	Get(ctx context.Context, key string) (string, error)
-	Delete(ctx context.Context, key string) error
-	Exists(ctx context.Context, key string) (bool, error)
-	GetKeys(ctx context.Context, pattern string) ([]string, error)
-	DeletePattern(ctx context.Context, pattern string) (int64, error)
+ Set(ctx context.Context, key string, value interface{}, ttl time.Duration) error
+ Get(ctx context.Context, key string) (string, error)
+ Delete(ctx context.Context, key string) error
+ Exists(ctx context.Context, key string) (bool, error)
+ GetKeys(ctx context.Context, pattern string) ([]string, error)
+ DeletePattern(ctx context.Context, pattern string) (int64, error)
 }
 ```
 
 #### Service Discovery Repository (service_discovery.go)
 ```go
 type ServiceDiscoveryRepository interface {
-	Register(ctx context.Context, serviceName, host string, port int, metadata map[string]string) error
-	Deregister(ctx context.Context, serviceName string) error
-	Heartbeat(ctx context.Context, serviceName string) error
-	Discover(ctx context.Context, serviceName string) (map[string]string, error)
-	ListServices(ctx context.Context) ([]string, error)
+ Register(ctx context.Context, serviceName, host string, port int, metadata map[string]string) error
+ Deregister(ctx context.Context, serviceName string) error
+ Heartbeat(ctx context.Context, serviceName string) error
+ Discover(ctx context.Context, serviceName string) (map[string]string, error)
+ ListServices(ctx context.Context) ([]string, error)
 }
 ```
 
@@ -241,67 +241,67 @@ type ServiceDiscoveryRepository interface {
 **Key Implementation: Dynamic Query Builder**
 ```go
 func (r *PostgresPositionRepository) Query(ctx context.Context, query *models.PositionQuery) ([]*models.Position, error) {
-	sqlQuery := `
-		SELECT position_id, account_id, symbol, quantity, available_quantity, locked_quantity,
-			   average_cost, market_value, currency, last_updated, created_at, metadata
-		FROM custodian.positions
-		WHERE 1=1
-	`
-	args := []interface{}{}
-	argIndex := 1
+ sqlQuery := `
+  SELECT position_id, account_id, symbol, quantity, available_quantity, locked_quantity,
+      average_cost, market_value, currency, last_updated, created_at, metadata
+  FROM custodian.positions
+  WHERE 1=1
+ `
+ args := []interface{}{}
+ argIndex := 1
 
-	// Dynamic filter building
-	if query.AccountID != nil {
-		sqlQuery += fmt.Sprintf(" AND account_id = $%d", argIndex)
-		args = append(args, *query.AccountID)
-		argIndex++
-	}
-	if query.Symbol != nil {
-		sqlQuery += fmt.Sprintf(" AND symbol = $%d", argIndex)
-		args = append(args, *query.Symbol)
-		argIndex++
-	}
-	if query.MinQuantity != nil {
-		sqlQuery += fmt.Sprintf(" AND quantity >= $%d", argIndex)
-		args = append(args, *query.MinQuantity)
-		argIndex++
-	}
-	// ... more filters
+ // Dynamic filter building
+ if query.AccountID != nil {
+  sqlQuery += fmt.Sprintf(" AND account_id = $%d", argIndex)
+  args = append(args, *query.AccountID)
+  argIndex++
+ }
+ if query.Symbol != nil {
+  sqlQuery += fmt.Sprintf(" AND symbol = $%d", argIndex)
+  args = append(args, *query.Symbol)
+  argIndex++
+ }
+ if query.MinQuantity != nil {
+  sqlQuery += fmt.Sprintf(" AND quantity >= $%d", argIndex)
+  args = append(args, *query.MinQuantity)
+  argIndex++
+ }
+ // ... more filters
 
-	// Dynamic sorting
-	if query.SortBy != "" {
-		sqlQuery += fmt.Sprintf(" ORDER BY %s %s", query.SortBy, query.SortOrder)
-	}
+ // Dynamic sorting
+ if query.SortBy != "" {
+  sqlQuery += fmt.Sprintf(" ORDER BY %s %s", query.SortBy, query.SortOrder)
+ }
 
-	// Pagination
-	if query.Limit > 0 {
-		sqlQuery += fmt.Sprintf(" LIMIT $%d", argIndex)
-		args = append(args, query.Limit)
-		argIndex++
-	}
-	if query.Offset > 0 {
-		sqlQuery += fmt.Sprintf(" OFFSET $%d", argIndex)
-		args = append(args, query.Offset)
-		argIndex++
-	}
+ // Pagination
+ if query.Limit > 0 {
+  sqlQuery += fmt.Sprintf(" LIMIT $%d", argIndex)
+  args = append(args, query.Limit)
+  argIndex++
+ }
+ if query.Offset > 0 {
+  sqlQuery += fmt.Sprintf(" OFFSET $%d", argIndex)
+  args = append(args, query.Offset)
+  argIndex++
+ }
 
-	rows, err := r.db.QueryContext(ctx, sqlQuery, args...)
-	// ... scan results
+ rows, err := r.db.QueryContext(ctx, sqlQuery, args...)
+ // ... scan results
 }
 ```
 
 **Atomic Update for Quantity Locking:**
 ```go
 func (r *PostgresPositionRepository) UpdateAvailableQuantity(ctx context.Context, positionID string, availableQty, lockedQty float64) error {
-	query := `
-		UPDATE custodian.positions
-		SET available_quantity = $2,
-			locked_quantity = $3,
-			last_updated = $4
-		WHERE position_id = $1
-	`
-	_, err := r.db.ExecContext(ctx, query, positionID, availableQty, lockedQty, time.Now())
-	return err
+ query := `
+  UPDATE custodian.positions
+  SET available_quantity = $2,
+   locked_quantity = $3,
+   last_updated = $4
+  WHERE position_id = $1
+ `
+ _, err := r.db.ExecContext(ctx, query, positionID, availableQty, lockedQty, time.Now())
+ return err
 }
 ```
 
@@ -310,50 +310,50 @@ func (r *PostgresPositionRepository) UpdateAvailableQuantity(ctx context.Context
 **Atomic Balance Update (for concurrent operations):**
 ```go
 func (r *PostgresBalanceRepository) AtomicUpdate(ctx context.Context, accountID, currency string, availableDelta, lockedDelta float64) error {
-	query := `
-		UPDATE custodian.balances
-		SET available_balance = available_balance + $3,
-			locked_balance = locked_balance + $4,
-			total_balance = available_balance + $3 + locked_balance + $4,
-			last_updated = $5
-		WHERE account_id = $1 AND currency = $2
-	`
-	result, err := r.db.ExecContext(ctx, query, accountID, currency, availableDelta, lockedDelta, time.Now())
-	if err != nil {
-		return fmt.Errorf("atomic update failed: %w", err)
-	}
+ query := `
+  UPDATE custodian.balances
+  SET available_balance = available_balance + $3,
+   locked_balance = locked_balance + $4,
+   total_balance = available_balance + $3 + locked_balance + $4,
+   last_updated = $5
+  WHERE account_id = $1 AND currency = $2
+ `
+ result, err := r.db.ExecContext(ctx, query, accountID, currency, availableDelta, lockedDelta, time.Now())
+ if err != nil {
+  return fmt.Errorf("atomic update failed: %w", err)
+ }
 
-	rowsAffected, err := result.RowsAffected()
-	if err != nil {
-		return fmt.Errorf("failed to get rows affected: %w", err)
-	}
-	if rowsAffected == 0 {
-		return fmt.Errorf("balance not found for account %s and currency %s", accountID, currency)
-	}
+ rowsAffected, err := result.RowsAffected()
+ if err != nil {
+  return fmt.Errorf("failed to get rows affected: %w", err)
+ }
+ if rowsAffected == 0 {
+  return fmt.Errorf("balance not found for account %s and currency %s", accountID, currency)
+ }
 
-	return nil
+ return nil
 }
 ```
 
 **Upsert Pattern (INSERT ... ON CONFLICT):**
 ```go
 func (r *PostgresBalanceRepository) Upsert(ctx context.Context, balance *models.Balance) error {
-	query := `
-		INSERT INTO custodian.balances (balance_id, account_id, currency, available_balance, locked_balance, total_balance, last_updated, created_at)
-		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-		ON CONFLICT (account_id, currency)
-		DO UPDATE SET
-			available_balance = EXCLUDED.available_balance,
-			locked_balance = EXCLUDED.locked_balance,
-			total_balance = EXCLUDED.total_balance,
-			last_updated = EXCLUDED.last_updated
-	`
-	_, err := r.db.ExecContext(ctx, query,
-		balance.BalanceID, balance.AccountID, balance.Currency,
-		balance.AvailableBalance, balance.LockedBalance, balance.TotalBalance,
-		balance.LastUpdated, balance.CreatedAt,
-	)
-	return err
+ query := `
+  INSERT INTO custodian.balances (balance_id, account_id, currency, available_balance, locked_balance, total_balance, last_updated, created_at)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+  ON CONFLICT (account_id, currency)
+  DO UPDATE SET
+   available_balance = EXCLUDED.available_balance,
+   locked_balance = EXCLUDED.locked_balance,
+   total_balance = EXCLUDED.total_balance,
+   last_updated = EXCLUDED.last_updated
+ `
+ _, err := r.db.ExecContext(ctx, query,
+  balance.BalanceID, balance.AccountID, balance.Currency,
+  balance.AvailableBalance, balance.LockedBalance, balance.TotalBalance,
+  balance.LastUpdated, balance.CreatedAt,
+ )
+ return err
 }
 ```
 
@@ -366,47 +366,47 @@ func (r *PostgresBalanceRepository) Upsert(ctx context.Context, balance *models.
 **Namespace Isolation:**
 ```go
 func (r *RedisCacheRepository) buildKey(key string) string {
-	return fmt.Sprintf("%s:%s", r.namespace, key)
+ return fmt.Sprintf("%s:%s", r.namespace, key)
 }
 
 func (r *RedisCacheRepository) Set(ctx context.Context, key string, value interface{}, ttl time.Duration) error {
-	fullKey := r.buildKey(key)
-	return r.client.Set(ctx, fullKey, value, ttl).Err()
+ fullKey := r.buildKey(key)
+ return r.client.Set(ctx, fullKey, value, ttl).Err()
 }
 
 func (r *RedisCacheRepository) Get(ctx context.Context, key string) (string, error) {
-	fullKey := r.buildKey(key)
-	return r.client.Get(ctx, fullKey).Result()
+ fullKey := r.buildKey(key)
+ return r.client.Get(ctx, fullKey).Result()
 }
 ```
 
 **Pattern Operations:**
 ```go
 func (r *RedisCacheRepository) GetKeys(ctx context.Context, pattern string) ([]string, error) {
-	fullPattern := r.buildKey(pattern)
-	keys, err := r.client.Keys(ctx, fullPattern).Result()
-	if err != nil {
-		return nil, fmt.Errorf("failed to get keys: %w", err)
-	}
+ fullPattern := r.buildKey(pattern)
+ keys, err := r.client.Keys(ctx, fullPattern).Result()
+ if err != nil {
+  return nil, fmt.Errorf("failed to get keys: %w", err)
+ }
 
-	// Strip namespace prefix from results
-	results := make([]string, len(keys))
-	for i, key := range keys {
-		results[i] = strings.TrimPrefix(key, r.namespace+":")
-	}
-	return results, nil
+ // Strip namespace prefix from results
+ results := make([]string, len(keys))
+ for i, key := range keys {
+  results[i] = strings.TrimPrefix(key, r.namespace+":")
+ }
+ return results, nil
 }
 
 func (r *RedisCacheRepository) DeletePattern(ctx context.Context, pattern string) (int64, error) {
-	fullPattern := r.buildKey(pattern)
-	keys, err := r.client.Keys(ctx, fullPattern).Result()
-	if err != nil {
-		return 0, fmt.Errorf("failed to get keys: %w", err)
-	}
-	if len(keys) == 0 {
-		return 0, nil
-	}
-	return r.client.Del(ctx, keys...).Result()
+ fullPattern := r.buildKey(pattern)
+ keys, err := r.client.Keys(ctx, fullPattern).Result()
+ if err != nil {
+  return 0, fmt.Errorf("failed to get keys: %w", err)
+ }
+ if len(keys) == 0 {
+  return 0, nil
+ }
+ return r.client.Del(ctx, keys...).Result()
 }
 ```
 
@@ -415,49 +415,49 @@ func (r *RedisCacheRepository) DeletePattern(ctx context.Context, pattern string
 **Service Registration with Metadata:**
 ```go
 func (r *RedisServiceDiscovery) Register(ctx context.Context, serviceName, host string, port int, metadata map[string]string) error {
-	key := r.buildServiceKey(serviceName)
+ key := r.buildServiceKey(serviceName)
 
-	// Build service info map
-	serviceInfo := map[string]interface{}{
-		"name":       serviceName,
-		"host":       host,
-		"port":       port,
-		"registered": time.Now().Format(time.RFC3339),
-	}
-	for k, v := range metadata {
-		serviceInfo[k] = v
-	}
+ // Build service info map
+ serviceInfo := map[string]interface{}{
+  "name":       serviceName,
+  "host":       host,
+  "port":       port,
+  "registered": time.Now().Format(time.RFC3339),
+ }
+ for k, v := range metadata {
+  serviceInfo[k] = v
+ }
 
-	// Store in Redis hash
-	if err := r.client.HSet(ctx, key, serviceInfo).Err(); err != nil {
-		return fmt.Errorf("failed to register service: %w", err)
-	}
+ // Store in Redis hash
+ if err := r.client.HSet(ctx, key, serviceInfo).Err(); err != nil {
+  return fmt.Errorf("failed to register service: %w", err)
+ }
 
-	// Set TTL for automatic cleanup (90 seconds)
-	if err := r.client.Expire(ctx, key, 90*time.Second).Err(); err != nil {
-		return fmt.Errorf("failed to set TTL: %w", err)
-	}
+ // Set TTL for automatic cleanup (90 seconds)
+ if err := r.client.Expire(ctx, key, 90*time.Second).Err(); err != nil {
+  return fmt.Errorf("failed to set TTL: %w", err)
+ }
 
-	return nil
+ return nil
 }
 ```
 
 **Heartbeat for Service Liveness:**
 ```go
 func (r *RedisServiceDiscovery) Heartbeat(ctx context.Context, serviceName string) error {
-	key := r.buildServiceKey(serviceName)
+ key := r.buildServiceKey(serviceName)
 
-	// Refresh TTL
-	if err := r.client.Expire(ctx, key, 90*time.Second).Err(); err != nil {
-		return fmt.Errorf("heartbeat failed: %w", err)
-	}
+ // Refresh TTL
+ if err := r.client.Expire(ctx, key, 90*time.Second).Err(); err != nil {
+  return fmt.Errorf("heartbeat failed: %w", err)
+ }
 
-	// Update last_heartbeat timestamp
-	if err := r.client.HSet(ctx, key, "last_heartbeat", time.Now().Format(time.RFC3339)).Err(); err != nil {
-		return fmt.Errorf("failed to update heartbeat timestamp: %w", err)
-	}
+ // Update last_heartbeat timestamp
+ if err := r.client.HSet(ctx, key, "last_heartbeat", time.Now().Format(time.RFC3339)).Err(); err != nil {
+  return fmt.Errorf("failed to update heartbeat timestamp: %w", err)
+ }
 
-	return nil
+ return nil
 }
 ```
 
@@ -468,95 +468,95 @@ func (r *RedisServiceDiscovery) Heartbeat(ctx context.Context, serviceName strin
 **Unified Interface:**
 ```go
 type DataAdapter interface {
-	// Repository accessors
-	PositionRepository() interfaces.PositionRepository
-	SettlementRepository() interfaces.SettlementRepository
-	BalanceRepository() interfaces.BalanceRepository
-	ServiceDiscoveryRepository() interfaces.ServiceDiscoveryRepository
-	CacheRepository() interfaces.CacheRepository
+ // Repository accessors
+ PositionRepository() interfaces.PositionRepository
+ SettlementRepository() interfaces.SettlementRepository
+ BalanceRepository() interfaces.BalanceRepository
+ ServiceDiscoveryRepository() interfaces.ServiceDiscoveryRepository
+ CacheRepository() interfaces.CacheRepository
 
-	// Lifecycle management
-	Connect(ctx context.Context) error
-	Disconnect(ctx context.Context) error
-	HealthCheck(ctx context.Context) error
+ // Lifecycle management
+ Connect(ctx context.Context) error
+ Disconnect(ctx context.Context) error
+ HealthCheck(ctx context.Context) error
 }
 
 type CustodianDataAdapter struct {
-	config                     *config.Config
-	logger                     *logrus.Logger
-	db                         *database.PostgresDB
-	cache                      *cache.RedisClient
-	positionRepo               interfaces.PositionRepository
-	settlementRepo             interfaces.SettlementRepository
-	balanceRepo                interfaces.BalanceRepository
-	serviceDiscoveryRepo       interfaces.ServiceDiscoveryRepository
-	cacheRepo                  interfaces.CacheRepository
+ config                     *config.Config
+ logger                     *logrus.Logger
+ db                         *database.PostgresDB
+ cache                      *cache.RedisClient
+ positionRepo               interfaces.PositionRepository
+ settlementRepo             interfaces.SettlementRepository
+ balanceRepo                interfaces.BalanceRepository
+ serviceDiscoveryRepo       interfaces.ServiceDiscoveryRepository
+ cacheRepo                  interfaces.CacheRepository
 }
 ```
 
 **Environment-Based Factory:**
 ```go
 func NewCustodianDataAdapterFromEnv(logger *logrus.Logger) (DataAdapter, error) {
-	cfg, err := config.LoadConfig()
-	if err != nil {
-		return nil, fmt.Errorf("failed to load config: %w", err)
-	}
-	return NewCustodianDataAdapter(cfg, logger)
+ cfg, err := config.LoadConfig()
+ if err != nil {
+  return nil, fmt.Errorf("failed to load config: %w", err)
+ }
+ return NewCustodianDataAdapter(cfg, logger)
 }
 ```
 
 **Connection Lifecycle:**
 ```go
 func (a *CustodianDataAdapter) Connect(ctx context.Context) error {
-	// Connect to PostgreSQL
-	db, err := database.NewPostgresDB(a.config, a.logger)
-	if err != nil {
-		return fmt.Errorf("failed to connect to postgres: %w", err)
-	}
-	a.db = db
-	a.logger.Info("PostgreSQL connection established")
+ // Connect to PostgreSQL
+ db, err := database.NewPostgresDB(a.config, a.logger)
+ if err != nil {
+  return fmt.Errorf("failed to connect to postgres: %w", err)
+ }
+ a.db = db
+ a.logger.Info("PostgreSQL connection established")
 
-	// Connect to Redis
-	redisClient, err := cache.NewRedisClient(a.config, a.logger)
-	if err != nil {
-		a.db.Close()
-		return fmt.Errorf("failed to connect to redis: %w", err)
-	}
-	a.cache = redisClient
-	a.logger.Info("Redis connection established")
+ // Connect to Redis
+ redisClient, err := cache.NewRedisClient(a.config, a.logger)
+ if err != nil {
+  a.db.Close()
+  return fmt.Errorf("failed to connect to redis: %w", err)
+ }
+ a.cache = redisClient
+ a.logger.Info("Redis connection established")
 
-	// Initialize repositories
-	a.positionRepo = NewPostgresPositionRepository(a.db.DB())
-	a.settlementRepo = NewPostgresSettlementRepository(a.db.DB())
-	a.balanceRepo = NewPostgresBalanceRepository(a.db.DB())
-	a.cacheRepo = NewRedisCacheRepository(a.cache.Client(), a.config.CacheNamespace)
-	a.serviceDiscoveryRepo = NewRedisServiceDiscovery(a.cache.Client(), a.config.ServiceDiscoveryNamespace)
+ // Initialize repositories
+ a.positionRepo = NewPostgresPositionRepository(a.db.DB())
+ a.settlementRepo = NewPostgresSettlementRepository(a.db.DB())
+ a.balanceRepo = NewPostgresBalanceRepository(a.db.DB())
+ a.cacheRepo = NewRedisCacheRepository(a.cache.Client(), a.config.CacheNamespace)
+ a.serviceDiscoveryRepo = NewRedisServiceDiscovery(a.cache.Client(), a.config.ServiceDiscoveryNamespace)
 
-	a.logger.Info("Custodian data adapter connected")
-	return nil
+ a.logger.Info("Custodian data adapter connected")
+ return nil
 }
 
 func (a *CustodianDataAdapter) Disconnect(ctx context.Context) error {
-	var errs []error
+ var errs []error
 
-	if a.cache != nil {
-		if err := a.cache.Close(); err != nil {
-			errs = append(errs, fmt.Errorf("failed to close redis: %w", err))
-		}
-	}
+ if a.cache != nil {
+  if err := a.cache.Close(); err != nil {
+   errs = append(errs, fmt.Errorf("failed to close redis: %w", err))
+  }
+ }
 
-	if a.db != nil {
-		if err := a.db.Close(); err != nil {
-			errs = append(errs, fmt.Errorf("failed to close postgres: %w", err))
-		}
-	}
+ if a.db != nil {
+  if err := a.db.Close(); err != nil {
+   errs = append(errs, fmt.Errorf("failed to close postgres: %w", err))
+  }
+ }
 
-	if len(errs) > 0 {
-		return fmt.Errorf("errors during disconnect: %v", errs)
-	}
+ if len(errs) > 0 {
+  return fmt.Errorf("errors during disconnect: %v", errs)
+ }
 
-	a.logger.Info("Custodian data adapter disconnected")
-	return nil
+ a.logger.Info("Custodian data adapter disconnected")
+ return nil
 }
 ```
 
@@ -567,107 +567,107 @@ func (a *CustodianDataAdapter) Disconnect(ctx context.Context) error {
 #### PostgreSQL Connection Pooling (internal/database/postgres.go)
 ```go
 func NewPostgresDB(cfg *config.Config, logger *logrus.Logger) (*PostgresDB, error) {
-	db, err := sql.Open("postgres", cfg.PostgresURL)
-	if err != nil {
-		return nil, fmt.Errorf("failed to open database: %w", err)
-	}
+ db, err := sql.Open("postgres", cfg.PostgresURL)
+ if err != nil {
+  return nil, fmt.Errorf("failed to open database: %w", err)
+ }
 
-	// Configure connection pool
-	db.SetMaxOpenConns(cfg.MaxConnections)              // Default: 25
-	db.SetMaxIdleConns(cfg.MaxIdleConnections)          // Default: 10
-	db.SetConnMaxLifetime(cfg.ConnectionMaxLifetime)    // Default: 1 hour
-	db.SetConnMaxIdleTime(cfg.ConnectionMaxIdleTime)    // Default: 10 minutes
+ // Configure connection pool
+ db.SetMaxOpenConns(cfg.MaxConnections)              // Default: 25
+ db.SetMaxIdleConns(cfg.MaxIdleConnections)          // Default: 10
+ db.SetConnMaxLifetime(cfg.ConnectionMaxLifetime)    // Default: 1 hour
+ db.SetConnMaxIdleTime(cfg.ConnectionMaxIdleTime)    // Default: 10 minutes
 
-	// Health check
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	if err := db.PingContext(ctx); err != nil {
-		db.Close()
-		return nil, fmt.Errorf("database health check failed: %w", err)
-	}
+ // Health check
+ ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+ defer cancel()
+ if err := db.PingContext(ctx); err != nil {
+  db.Close()
+  return nil, fmt.Errorf("database health check failed: %w", err)
+ }
 
-	logger.WithFields(logrus.Fields{
-		"max_connections": cfg.MaxConnections,
-		"max_idle":        cfg.MaxIdleConnections,
-	}).Info("PostgreSQL connection pool configured")
+ logger.WithFields(logrus.Fields{
+  "max_connections": cfg.MaxConnections,
+  "max_idle":        cfg.MaxIdleConnections,
+ }).Info("PostgreSQL connection pool configured")
 
-	return &PostgresDB{db: db, logger: logger}, nil
+ return &PostgresDB{db: db, logger: logger}, nil
 }
 ```
 
 #### Redis Client (internal/cache/redis.go)
 ```go
 func NewRedisClient(cfg *config.Config, logger *logrus.Logger) (*RedisClient, error) {
-	opts, err := redis.ParseURL(cfg.RedisURL)
-	if err != nil {
-		return nil, fmt.Errorf("failed to parse redis URL: %w", err)
-	}
+ opts, err := redis.ParseURL(cfg.RedisURL)
+ if err != nil {
+  return nil, fmt.Errorf("failed to parse redis URL: %w", err)
+ }
 
-	// Configure connection pool
-	opts.PoolSize = 10
-	opts.MinIdleConns = 2
-	opts.MaxRetries = 3
-	opts.DialTimeout = 5 * time.Second
-	opts.ReadTimeout = 3 * time.Second
-	opts.WriteTimeout = 3 * time.Second
+ // Configure connection pool
+ opts.PoolSize = 10
+ opts.MinIdleConns = 2
+ opts.MaxRetries = 3
+ opts.DialTimeout = 5 * time.Second
+ opts.ReadTimeout = 3 * time.Second
+ opts.WriteTimeout = 3 * time.Second
 
-	client := redis.NewClient(opts)
+ client := redis.NewClient(opts)
 
-	// Health check
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	if err := client.Ping(ctx).Err(); err != nil {
-		client.Close()
-		return nil, fmt.Errorf("redis health check failed: %w", err)
-	}
+ // Health check
+ ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+ defer cancel()
+ if err := client.Ping(ctx).Err(); err != nil {
+  client.Close()
+  return nil, fmt.Errorf("redis health check failed: %w", err)
+ }
 
-	logger.Info("Redis client connected")
-	return &RedisClient{client: client, logger: logger}, nil
+ logger.Info("Redis client connected")
+ return &RedisClient{client: client, logger: logger}, nil
 }
 ```
 
 #### Environment Configuration (internal/config/config.go)
 ```go
 type Config struct {
-	// Service Identity
-	ServiceName    string
-	ServiceVersion string
+ // Service Identity
+ ServiceName    string
+ ServiceVersion string
 
-	// Database Configuration
-	PostgresURL            string
-	RedisURL               string
-	MaxConnections         int
-	MaxIdleConnections     int
-	ConnectionMaxLifetime  time.Duration
-	ConnectionMaxIdleTime  time.Duration
+ // Database Configuration
+ PostgresURL            string
+ RedisURL               string
+ MaxConnections         int
+ MaxIdleConnections     int
+ ConnectionMaxLifetime  time.Duration
+ ConnectionMaxIdleTime  time.Duration
 
-	// Cache Configuration
-	CacheNamespace             string
-	ServiceDiscoveryNamespace  string
-	DefaultTTL                 time.Duration
+ // Cache Configuration
+ CacheNamespace             string
+ ServiceDiscoveryNamespace  string
+ DefaultTTL                 time.Duration
 
-	// Health Check
-	HealthCheckInterval time.Duration
+ // Health Check
+ HealthCheckInterval time.Duration
 }
 
 func LoadConfig() (*Config, error) {
-	// Try to load .env file (ignore errors if not found)
-	_ = godotenv.Load()
+ // Try to load .env file (ignore errors if not found)
+ _ = godotenv.Load()
 
-	return &Config{
-		ServiceName:               getEnv("SERVICE_NAME", "custodian-data-adapter"),
-		ServiceVersion:            getEnv("SERVICE_VERSION", "1.0.0"),
-		PostgresURL:               getEnv("POSTGRES_URL", ""),
-		RedisURL:                  getEnv("REDIS_URL", ""),
-		MaxConnections:            getEnvAsInt("MAX_CONNECTIONS", 25),
-		MaxIdleConnections:        getEnvAsInt("MAX_IDLE_CONNECTIONS", 10),
-		ConnectionMaxLifetime:     getEnvAsDuration("CONNECTION_MAX_LIFETIME", 1*time.Hour),
-		ConnectionMaxIdleTime:     getEnvAsDuration("CONNECTION_MAX_IDLE_TIME", 10*time.Minute),
-		CacheNamespace:            getEnv("CACHE_NAMESPACE", "custodian"),
-		ServiceDiscoveryNamespace: getEnv("SERVICE_DISCOVERY_NAMESPACE", "custodian"),
-		DefaultTTL:                getEnvAsDuration("DEFAULT_TTL", 1*time.Hour),
-		HealthCheckInterval:       getEnvAsDuration("HEALTH_CHECK_INTERVAL", 15*time.Second),
-	}, nil
+ return &Config{
+  ServiceName:               getEnv("SERVICE_NAME", "custodian-data-adapter"),
+  ServiceVersion:            getEnv("SERVICE_VERSION", "1.0.0"),
+  PostgresURL:               getEnv("POSTGRES_URL", ""),
+  RedisURL:                  getEnv("REDIS_URL", ""),
+  MaxConnections:            getEnvAsInt("MAX_CONNECTIONS", 25),
+  MaxIdleConnections:        getEnvAsInt("MAX_IDLE_CONNECTIONS", 10),
+  ConnectionMaxLifetime:     getEnvAsDuration("CONNECTION_MAX_LIFETIME", 1*time.Hour),
+  ConnectionMaxIdleTime:     getEnvAsDuration("CONNECTION_MAX_IDLE_TIME", 10*time.Minute),
+  CacheNamespace:            getEnv("CACHE_NAMESPACE", "custodian"),
+  ServiceDiscoveryNamespace: getEnv("SERVICE_DISCOVERY_NAMESPACE", "custodian"),
+  DefaultTTL:                getEnvAsDuration("DEFAULT_TTL", 1*time.Hour),
+  HealthCheckInterval:       getEnvAsDuration("HEALTH_CHECK_INTERVAL", 15*time.Second),
+ }, nil
 }
 ```
 
@@ -828,38 +828,38 @@ HEALTH_CHECK_INTERVAL=15s
 .PHONY: test-quick test-position test-settlement test-balance test-service test-cache test-all test-coverage
 
 test-quick:
-	@echo "Running quick tests..."
-	go test -v -short ./...
+ @echo "Running quick tests..."
+ go test -v -short ./...
 
 test-position:
-	@echo "Testing position repository..."
-	go test -v ./pkg/adapters -run TestPosition
+ @echo "Testing position repository..."
+ go test -v ./pkg/adapters -run TestPosition
 
 test-settlement:
-	@echo "Testing settlement repository..."
-	go test -v ./pkg/adapters -run TestSettlement
+ @echo "Testing settlement repository..."
+ go test -v ./pkg/adapters -run TestSettlement
 
 test-balance:
-	@echo "Testing balance repository..."
-	go test -v ./pkg/adapters -run TestBalance
+ @echo "Testing balance repository..."
+ go test -v ./pkg/adapters -run TestBalance
 
 test-service:
-	@echo "Testing service discovery..."
-	go test -v ./pkg/adapters -run TestServiceDiscovery
+ @echo "Testing service discovery..."
+ go test -v ./pkg/adapters -run TestServiceDiscovery
 
 test-cache:
-	@echo "Testing cache operations..."
-	go test -v ./pkg/adapters -run TestCache
+ @echo "Testing cache operations..."
+ go test -v ./pkg/adapters -run TestCache
 
 test-all:
-	@echo "Running all tests..."
-	go test -v ./...
+ @echo "Running all tests..."
+ go test -v ./...
 
 test-coverage:
-	@echo "Generating test coverage report..."
-	go test -v -coverprofile=coverage.out ./...
-	go tool cover -html=coverage.out -o coverage.html
-	@echo "Coverage report: coverage.html"
+ @echo "Generating test coverage report..."
+ go test -v -coverprofile=coverage.out ./...
+ go tool cover -html=coverage.out -o coverage.html
+ @echo "Coverage report: coverage.html"
 ```
 
 ---
