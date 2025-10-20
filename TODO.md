@@ -148,7 +148,7 @@ custodian-data-adapter-go/
 **Goal**: Create repository structure and base configuration
 **Estimated Time**: 1 hour
 
-#### Steps:
+#### Steps
 - [ ] Create repository directory structure
 - [ ] Initialize go.mod with dependencies:
   ```go
@@ -183,7 +183,7 @@ custodian-data-adapter-go/
 **Goal**: Create production-ready .env configuration following 12-factor app principles
 **Estimated Time**: 30 minutes
 
-#### .env.example Template:
+#### .env.example Template
 ```bash
 # Custodian Data Adapter Configuration
 # Copy this to .env and update with your orchestrator credentials
@@ -241,7 +241,7 @@ PERF_LATENCY_MAX=100ms                  # Maximum average latency
 SKIP_INTEGRATION_TESTS=false            # Set to true in CI without infrastructure
 ```
 
-#### Configuration Implementation (internal/config/config.go):
+#### Configuration Implementation (internal/config/config.go)
 ```go
 package config
 
@@ -604,7 +604,7 @@ type BalanceQuery struct {
 **Goal**: Define clean interfaces for all custodian operations
 **Estimated Time**: 1 hour
 
-#### Position Repository (pkg/interfaces/position_repository.go):
+#### Position Repository (pkg/interfaces/position_repository.go)
 ```go
 package interfaces
 
@@ -640,7 +640,7 @@ type PositionRepository interface {
 }
 ```
 
-#### Settlement Repository (pkg/interfaces/settlement_repository.go):
+#### Settlement Repository (pkg/interfaces/settlement_repository.go)
 ```go
 package interfaces
 
@@ -676,7 +676,7 @@ type SettlementRepository interface {
 }
 ```
 
-#### Balance Repository (pkg/interfaces/balance_repository.go):
+#### Balance Repository (pkg/interfaces/balance_repository.go)
 ```go
 package interfaces
 
@@ -709,7 +709,7 @@ type BalanceRepository interface {
 }
 ```
 
-#### Shared Interfaces (copy from audit-data-adapter-go):
+#### Shared Interfaces (copy from audit-data-adapter-go)
 
 **pkg/interfaces/service_discovery.go** - Same as audit-data-adapter-go
 **pkg/interfaces/cache.go** - Same as audit-data-adapter-go
@@ -771,7 +771,7 @@ Follow audit-data-adapter-go pattern for:
 **Goal**: Create factory pattern for adapter initialization
 **Estimated Time**: 1 hour
 
-#### pkg/adapters/factory.go:
+#### pkg/adapters/factory.go
 ```go
 package adapters
 
@@ -817,7 +817,7 @@ func NewCustodianDataAdapterFromEnv(logger *logrus.Logger) (DataAdapter, error) 
 **Goal**: Create comprehensive test suite following audit-data-adapter-go pattern
 **Estimated Time**: 3 hours
 
-#### Test Files to Create:
+#### Test Files to Create
 - `tests/init_test.go` - godotenv loading and test setup
 - `tests/behavior_test_suite.go` - BDD framework with Given/When/Then
 - `tests/position_behavior_test.go` - Position CRUD and query tests
@@ -828,7 +828,7 @@ func NewCustodianDataAdapterFromEnv(logger *logrus.Logger) (DataAdapter, error) 
 - `tests/integration_behavior_test.go` - Cross-repository consistency tests
 - `tests/test_utils.go` - Test utilities and factories
 
-#### Makefile Test Automation:
+#### Makefile Test Automation
 ```makefile
 .PHONY: test test-quick test-position test-settlement test-balance test-service test-cache test-integration test-all test-coverage check-env
 
@@ -839,55 +839,55 @@ ifneq (,$(wildcard .env))
 endif
 
 check-env:
-	@if [ ! -f .env ]; then \
-		echo "Warning: .env not found. Copy .env.example to .env"; \
-		exit 1; \
-	fi
+ @if [ ! -f .env ]; then \
+  echo "Warning: .env not found. Copy .env.example to .env"; \
+  exit 1; \
+ fi
 
 test-quick:
-	@if [ -f .env ]; then set -a && . ./.env && set +a; fi && \
-	go test -v ./tests -run TestPositionBehavior -timeout=2m
+ @if [ -f .env ]; then set -a && . ./.env && set +a; fi && \
+ go test -v ./tests -run TestPositionBehavior -timeout=2m
 
 test-position: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -run TestPositionBehaviorSuite -timeout=5m
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -run TestPositionBehaviorSuite -timeout=5m
 
 test-settlement: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -run TestSettlementBehaviorSuite -timeout=5m
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -run TestSettlementBehaviorSuite -timeout=5m
 
 test-balance: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -run TestBalanceBehaviorSuite -timeout=5m
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -run TestBalanceBehaviorSuite -timeout=5m
 
 test-service: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -run TestServiceDiscoveryBehaviorSuite -timeout=5m
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -run TestServiceDiscoveryBehaviorSuite -timeout=5m
 
 test-cache: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -run TestCacheBehaviorSuite -timeout=5m
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -run TestCacheBehaviorSuite -timeout=5m
 
 test-integration: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -run TestIntegrationBehaviorSuite -timeout=10m
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -run TestIntegrationBehaviorSuite -timeout=10m
 
 test-all: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -timeout=15m
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -timeout=15m
 
 test-coverage: check-env
-	@set -a && . ./.env && set +a && \
-	go test -v ./tests -coverprofile=coverage.out -timeout=15m
-	@go tool cover -html=coverage.out -o coverage.html
-	@echo "Coverage report generated: coverage.html"
+ @set -a && . ./.env && set +a && \
+ go test -v ./tests -coverprofile=coverage.out -timeout=15m
+ @go tool cover -html=coverage.out -o coverage.html
+ @echo "Coverage report generated: coverage.html"
 
 build:
-	go build -v ./...
+ go build -v ./...
 
 clean:
-	rm -f coverage.out coverage.html
-	go clean -testcache
+ rm -f coverage.out coverage.html
+ go clean -testcache
 ```
 
 **Test Coverage Goals**:
@@ -912,7 +912,7 @@ clean:
 **Goal**: Create comprehensive documentation for developers
 **Estimated Time**: 1 hour
 
-#### README.md:
+#### README.md
 - Overview of custodian data adapter
 - Architecture and repository pattern
 - Installation and setup instructions
@@ -920,7 +920,7 @@ clean:
 - Testing guide
 - Environment configuration reference
 
-#### tests/README.md:
+#### tests/README.md
 - Testing framework overview
 - How to run different test suites
 - Environment setup for tests
