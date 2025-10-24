@@ -47,7 +47,7 @@ ServiceInstanceName: custodian-Komainu
 → Redis Namespace: "custodian:Komainu"
 ```
 
-## Changes
+## What Changed
 
 ### 1. Enhanced Configuration (`internal/config/config.go`)
 
